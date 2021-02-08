@@ -1,5 +1,6 @@
 const createWeatherHTML = (currentDay) => {
 	console.log(currentDay);
+	weatherD.innerHTML = '';
 	const weatherContent = `
       <h2>${weekDays[new Date().getDay()]}</h2>
           <h2>Temperature: ${currentDay.current.temperature}&deg;C</h2>
@@ -11,7 +12,11 @@ const createWeatherHTML = (currentDay) => {
 const kelvinToFahrenheit = (k) => (((k - 273.15) * 9) / 5 + 32).toFixed(0);
 
 const createVenuesHTML = (data) => {
-	$destination.append(`<h2>${data[0].venue.location.city}</h2>`);
+	venueDiv.innerHTML = '';
+	destinationDiv.innerHTML = '';
+
+	destinationDiv.innerHTML = `<h2>${data[0].venue.location.city}</h2>`;
+	// $destination.append(`<h2>${data[0].venue.location.city}</h2>`);
 	data.forEach((item, index) => {
 		const venueIcon = item.venue.categories[0].icon;
 		const venueImgSrc = `${venueIcon.prefix}bg_64${venueIcon.suffix}`;
@@ -24,6 +29,7 @@ const createVenuesHTML = (data) => {
         <p>${item.venue.location.city}</p>
         <p>${item.venue.location.country}</p>
       </div>`;
-		$venueDivs.append(venueContent);
+		// $venueDivs.append(venueContent);
+		venueDiv.insertAdjacentHTML('beforeend', venueContent);
 	});
 };
